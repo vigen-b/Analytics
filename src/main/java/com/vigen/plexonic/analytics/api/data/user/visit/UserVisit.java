@@ -10,7 +10,7 @@ import java.util.Date;
 public class UserVisit {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     private String user_id;

@@ -1,20 +1,27 @@
 package com.vigen.plexonic.analytics.api;
 
-import com.vigen.plexonic.analytics.api.data.user.register.UserRegister;
-import com.vigen.plexonic.analytics.api.data.user.register.UserRegisterRepository;
+import com.vigen.plexonic.analytics.api.service.DauService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Date;
 
 @RestController
 public class DailyActiveUsersController {
 
     @Autowired
-    private UserRegisterRepository userRegisterRepository;
+    private DauService dauService;
 
-    @RequestMapping("/all")
-    public @ResponseBody Iterable<UserRegister> getAllUsers() {
-        return userRegisterRepository.findAll();
+    @RequestMapping(
+            value = "/dau",
+            method = RequestMethod.POST,
+            produces = "application/json",
+            params = "dates"
+    )
+    public @ResponseBody Integer getAllUsers(
+            @RequestParam("dates") @DateTimeFormat(pattern="dd/MM/yyyy") Date[] dates
+    ) {
+        return dauService.getDailyActiveUsers(dates);
     }
 }

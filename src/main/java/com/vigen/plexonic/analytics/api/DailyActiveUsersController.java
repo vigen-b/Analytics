@@ -1,5 +1,6 @@
 package com.vigen.plexonic.analytics.api;
 
+import com.vigen.plexonic.analytics.api.data.user.visit.UserVisit;
 import com.vigen.plexonic.analytics.api.service.DauService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -19,8 +20,9 @@ public class DailyActiveUsersController {
             produces = "application/json",
             params = "dates"
     )
-    public @ResponseBody Integer getAllUsers(
-            @RequestParam("dates") @DateTimeFormat(pattern="dd/MM/yyyy") Date[] dates
+    public @ResponseBody
+    Iterable<UserVisit> getAllUsers(
+            @RequestParam("dates") @DateTimeFormat(pattern = "dd/MM/yyyy") Date[] dates
     ) {
         return dauService.getDailyActiveUsers(dates);
     }

@@ -22,7 +22,7 @@ public class RetentionController {
     )
     public @ResponseBody
     Iterable<UserVisit> getAllUsers(
-            @RequestParam("dates") @DateTimeFormat(pattern="dd/MM/yyyy") Date[] dates) {
+            @RequestParam("dates") @DateTimeFormat(pattern = "dd/MM/yyyy") Date[] dates) {
         return userVisitRepository.findAll();
     }
 }

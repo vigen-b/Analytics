@@ -1,5 +1,6 @@
 package com.vigen.plexonic.analytics.api.service;
 
+import com.vigen.plexonic.analytics.api.data.user.visit.UserVisit;
 import com.vigen.plexonic.analytics.api.data.user.visit.UserVisitRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,7 +14,7 @@ public class DauServiceImplementation implements DauService {
     private UserVisitRepository userVisitRepository;
 
     @Override
-    public Integer getDailyActiveUsers(Date[] dates) {
+    public Iterable<UserVisit> getDailyActiveUsers(Date[] dates) {
         return userVisitRepository.getDailyActiveUsers(dates);
     }
 }

@@ -1,5 +1,7 @@
 package com.vigen.plexonic.analytics.api.data.user.visit;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,6 +17,7 @@ public class UserVisit {
 
     private String user_id;
 
+    @JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss")
     private Date request_date;
 
     public Integer getId() {
@@ -29,12 +32,12 @@ public class UserVisit {
         return user_id;
     }
 
-    public Date getRequest_date() {
-        return request_date;
-    }
-
     public void setUser_id(String user_id) {
         this.user_id = user_id;
+    }
+
+    public Date getRequest_date() {
+        return request_date;
     }
 
     public void setRequest_date(Date request_date) {

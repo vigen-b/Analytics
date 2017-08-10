@@ -11,6 +11,6 @@ import java.util.Date;
 @Repository
 public interface UserVisitRepository extends CrudRepository<UserVisit, Integer> {
 
-    @Query("SELECT count(*) FROM UserVisit where DATE(request_date) IN (:date)")
-    Integer getDailyActiveUsers(@Param("date") Date[] date) throws DataAccessException;
+    @Query("FROM UserVisit where DATE(request_date) IN (:date)")
+    Iterable<UserVisit> getDailyActiveUsers(@Param("date") Date[] date) throws DataAccessException;
 }

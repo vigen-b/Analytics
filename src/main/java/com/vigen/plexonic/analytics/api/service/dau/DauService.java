@@ -1,4 +1,4 @@
-package com.vigen.plexonic.analytics.api.service;
+package com.vigen.plexonic.analytics.api.service.dau;
 
 import com.vigen.plexonic.analytics.api.data.user.visit.UserVisit;
 

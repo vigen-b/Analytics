@@ -3,9 +3,11 @@ package com.vigen.plexonic.analytics.api.service.retention;
 import com.vigen.plexonic.analytics.api.data.user.RetentionType;
 import com.vigen.plexonic.analytics.api.data.user.register.UserRegisterRepository;
 import com.vigen.plexonic.analytics.api.data.user.visit.UserVisitRepository;
+import com.vigen.plexonic.analytics.api.utils.Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 @Service
@@ -18,15 +20,9 @@ public class RetentionServiceImplemetation implements RetentionService {
 
     @Override
     public double calculateRetention(RetentionType type, Date date) {
-       /* Date endDate = Util.addDaysToDate(type, date);
-        int ce = userRegisterRepository.numberOfCustomers(endDate);
-        int cn = userRegisterRepository.newCustomersDuringPeriod(date, endDate);
-        int cs = userRegisterRepository.numberOfCustomers(date);
-        return calculateRetention(ce, cn, cs);*/
-        return 0;
-    }
+        Integer count = userRegisterRepository.getRegisteredUsers(date);
+        ArrayList<Integer> returnedUsers = userVisitRepository.getReturnedUsers(date, Util.addDaysToDate(type, date));
 
-    private double calculateRetention(int ce, int cn, int cs) {
-        return ((ce - cn) / cs) * 100;
+        return returnedUsers.size() / (double) count;
     }
 }

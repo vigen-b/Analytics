@@ -21,7 +21,7 @@ public class RetentionController {
             params = {"type", "date"}
     )
     public @ResponseBody
-    Integer calculateRetention(
+    double calculateRetention(
             @RequestParam("type") RetentionType type,
             @RequestParam("date") @DateTimeFormat(pattern = "dd/MM/yyyy") Date date) {
         return retentionService.calculateRetention(type, date);

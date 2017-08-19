@@ -2,10 +2,7 @@ package com.vigen.plexonic.analytics.api.data.user.register;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
@@ -15,6 +12,7 @@ public class UserRegister {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
+    @Column(unique = true)
     private String user_id;
 
     @JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss")
